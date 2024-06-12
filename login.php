@@ -74,8 +74,8 @@ if(isset($_POST['Submit']))
     <script src="main.js"></script>
 </head>
 <body>
-    
-    <img src="KOKOPSHE.png" alt="KOKOPSHE" class="container" width="100px" height="200px" />
+    <br>
+    <img src="heart.svg" alt="KOKOPSHE" class="container" width="100px" height="200px" />
     
     <form class="container"  method="POST">
         <span><b>E-mail</b></span>

@@ -14,9 +14,6 @@ $location = $row['location'];
 
 $driver = "Driver";
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -251,7 +251,7 @@ if(isset($_POST['submit']))
     
 
 
-    <div class="w-full h-64 bg-cover bg-center relative" style="background:skyblue;">
+    <div class="w-full h-64 bg-cover bg-center relative" style="background-image: url('bg.png')">
         <div class="container mx-auto flex items-center relative h-full">
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white">
             <?php 
@@ -298,9 +298,12 @@ if(isset($_POST['submit']))
            
             
             ?>
-            <button type="button" class="ml-2 btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">
-                Edit Profile
-            </button>
+            <div class="flex items-center bg-white space-x-2">
+                <button type="button" class="ml-2 btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Edit Profile
+                </button>
+                <a href="logout.php" class="btn btn-danger">Logout</a>
+            </div>
         </div>
     </div><br>
 
