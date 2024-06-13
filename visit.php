@@ -19,9 +19,10 @@ $row = mysqli_fetch_assoc($get);
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>kokopshe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="icon" href="KOKOPSHE.ico" type="image/x-icon" />
     <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/6a2d1d7f10.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +44,7 @@ $row = mysqli_fetch_assoc($get);
     
 
 
-    <div class="w-full h-64 bg-cover bg-center relative" style="background:skyblue;">
+    <div class="w-full h-64 bg-cover bg-center relative" style="background-image: url('bg.png')">
         <div class="container mx-auto flex items-center relative h-full">
             <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white">
             <?php 
@@ -53,7 +54,7 @@ $row = mysqli_fetch_assoc($get);
                     }
                     else
                     {
-                        echo '<img width="10px" src="Uploads/profile'.$row['id'].'.jpg" alt="uploads/profile'.$row['id'].'.jpg"
+                        echo '<img width="10px" src="Uploads/profile'.$row['id'].'.jpg" alt="Uploads/profile'.$row['id'].'.jpg"
                             class="object-cover w-full h-full">';
                     }
                 ?>

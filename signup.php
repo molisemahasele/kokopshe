@@ -28,7 +28,7 @@ if(isset($_POST['Submit']))
             $insert = mysqli_query($conn, "INSERT INTO kokopshe(firstname, lastname, email, role, location, password) VALUES('$firstname', '$lastname', '$email', '$role', '$location', '$password_hash')");
             if($insert)
             {
-                echo "<script>Successfully Registered</script>";
+                echo "<script>alert('Successfully Registered')</script>";
                 
             }
         }
@@ -42,8 +42,9 @@ if(isset($_POST['Submit']))
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kokopshe</title>
+    <title>kokopshe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="KOKOPSHE.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <style>
     body{ font: 14px sans-serif; }
@@ -51,10 +52,23 @@ if(isset($_POST['Submit']))
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="main.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body>
     
-    <img src="KOKOPSHE.png" alt="KOKOPSHE" class="container" width="100px" height="200px" />
+    <img src="KOKOPSHE2.png" alt="KOKOPSHE"  class="w-full h-96 bg-cover bg-center relative" />
     
     <form class="container"  method="POST">
         <span><b>Firstname</b></span>

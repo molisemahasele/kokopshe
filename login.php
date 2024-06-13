@@ -42,7 +42,7 @@ if(isset($_POST['Submit']))
                         }
                         else
                         {
-                            header("location: profile.php");
+                            header("location: index.php");
                         }
                         
                     }
@@ -63,8 +63,9 @@ if(isset($_POST['Submit']))
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kokopshe</title>
+    <title>kokopshe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="KOKOPSHE.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <style>
     body{ font: 14px sans-serif; }

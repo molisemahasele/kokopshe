@@ -20,9 +20,10 @@ $driver = "Driver";
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>kokopshe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="icon" href="KOKOPSHE.ico" type="image/x-icon" />
     <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/6a2d1d7f10.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,10 +42,11 @@ $driver = "Driver";
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 <body>
-    <img src="KOKOPSHE.png" alt="KOKOPSHE" class="container" width="100px" height="200px" />
+    <img src="KOKOPSHE2.png" alt="KOKOPSHE" class="w-full h-96 bg-cover bg-center relative" />
+    <a href="index.php"  class="ml-2 font-semibold text-blue-600 flex justify-center border-4 border-blue-600 mr-16 ml-16 rounded-lg">Visit my profile</a><br>
     <div class="container">
         <div class="bg-gray-400 ml-2 mr-2 h-auto rounded-lg p-4">
-
+            
             <div class="flex justify-center items-center space-x-4">
                 <h1 class="text-2xl font-bold">Drivers In Your Location</h1> 
             </div><br>

@@ -56,41 +56,51 @@ if(isset($_POST['submit']))
 
 
 
-    $file = $_FILES['file'];
-
-	  $filename = $_FILES['file']['name'];
-  	$fileTmp = $_FILES['file']['tmp_name'];
-	  $fileType = $_FILES['file']['type'];
-	  $fileSize = $_FILES['file']['size'];
-	  $fileErr = $_FILES['file']['error'];
-
-	  $fileExt = explode('.', $filename);
-	  $fileActualExt = strtolower(end($fileExt));
-
-    $allowed = array('jpg', 'jpeg', 'png', 'pdf', 'mp4');
     
-    if(in_array($fileActualExt, $allowed))
-	  {
-		  if($fileErr === 0)
-		  {
-			  if($fileSize < 10000000000)
-			  {
-				  $filenameNew  = "profile".$id.".".$fileActualExt;
-				  $fileDestination = 'uploads/'.$filenameNew;
-				  move_uploaded_file($fileTmp, $fileDestination);
-				  $sql = "UPDATE kokopshe SET status=1 WHERE id='$id';";
-				  $result = mysqli_query($conn, $sql);
-			  }
-			  else
-			  {
-				  echo "File too big";
-			  }
-		  }
-		  else
-		  {
-			  echo "there was an error";
-		  }
-	  }
+        $file = $_FILES['file'];
+    
+        $filename = $_FILES['file']['name'];
+        $fileTmp = $_FILES['file']['tmp_name'];
+        $fileType = $_FILES['file']['type'];
+        $fileSize = $_FILES['file']['size'];
+        $fileErr = $_FILES['file']['error'];
+    
+        $fileExt = explode('.', $filename);
+        $fileActualExt = strtolower(end($fileExt));
+    
+        $allowed = array('jpg', 'jpeg', 'png');
+    
+        if(in_array($fileActualExt, $allowed)) {
+            if($fileErr === 0) {
+                if($fileSize < 10000000000) { // Ensure the size is within acceptable limits
+                    $filenameNew = "profile" . $id . ".jpg"; // Convert all to .jpg
+                    $fileDestination = 'Uploads/' . $filenameNew;
+    
+                    // Create an image resource from the uploaded file
+                    if($fileActualExt === 'jpeg' || $fileActualExt === 'jpg') {
+                        $image = imagecreatefromjpeg($fileTmp);
+                    } elseif($fileActualExt === 'png') {
+                        $image = imagecreatefrompng($fileTmp);
+                    }
+    
+                    // Save the image as a JPEG
+                    if(imagejpeg($image, $fileDestination)) {
+                        imagedestroy($image); // Free up memory
+                        $sql = "UPDATE kokopshe SET status=1 WHERE id='$id';";
+                        $result = mysqli_query($conn, $sql);
+                    } else {
+                        echo "Failed to save image as JPEG";
+                    }
+                } else {
+                    echo "File too big";
+                }
+            } else {
+                echo "There was an error";
+            }
+        } else {
+            echo "Invalid file type";
+        }
+    
 	  
 
    
@@ -133,9 +143,14 @@ if(isset($_POST['submit']))
       $res= $row['Residence'];
     }
 
+    if($row['role'] == "Driver")
+    {
+        $fileImg = $_FILES['img']['name'];
+    }
 
-
-    $filename = $_FILES['img']['name'];
+    if(!empty($fileImg))
+    {
+        $filename = $_FILES['img']['name'];
     $tmpname = $_FILES['img']['tmp_name'];
     $filetype = $_FILES['img']['type'];
     
@@ -213,6 +228,7 @@ if(isset($_POST['submit']))
             imagedestroy($compressedImage);
         }
     }
+    }
 
     $update = mysqli_query($conn, "UPDATE kokopshe SET email='$email', Children='$children', School='$school', Drivers='$drivers', Experience='$xp', Route='$route', capacity='$capacity', Residence='$res' WHERE id='$id'");
     echo '<script>alert("success!")</script>';
@@ -227,8 +243,9 @@ if(isset($_POST['submit']))
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>kokopshe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="KOKOPSHE.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/6a2d1d7f10.js" crossorigin="anonymous"></script>
@@ -261,7 +278,7 @@ if(isset($_POST['submit']))
                     }
                     else
                     {
-                        echo '<img width="10px" src="Uploads/profile'.$row['id'].'.jpg" alt="uploads/profile'.$row['id'].'.jpg"
+                        echo '<img width="10px" src="Uploads/profile'.$row['id'].'.jpg" alt="Uploads/profile'.$row['id'].'.jpg"
                             class="object-cover w-full h-full">';
                     }
                 ?>
@@ -272,9 +289,19 @@ if(isset($_POST['submit']))
     </div>
     <br>
     <div class="container">
-        <div class="h-64 rounded-lg bg-white">
+        <div class="h-96 rounded-lg bg-white"><br>
+            <?php
+            
+            if($row['role'] == "Parent")
+            {
+                echo "<a href='welcome.php' class='ml-2 font-semibold text-blue-600 flex justify-center border-4 border-blue-600 p-2 mr-16 ml-16 rounded-lg '>Find A Driver</a>";
+            }
+            
+            ?>
+            <br>
             <h1 class="ml-2 font-bold text-2xl">Profile Details</h1>
             <?php
+            
             echo "<div class='ml-2 font-semibold'>Name: ".$row['firstname']." ".$row['lastname']."</div>";
             echo "<div class='ml-2 font-semibold'>Email: ".$row['email']."</div>";
             
@@ -358,10 +385,7 @@ if(isset($_POST['submit']))
                         </div>
   
   
-                      <div class="form-outline mb-4">
-                        <input name="capacity" type="text" id="name4" placeholder="Capacity" class="form-control" />
-                        <label class="form-label" for="name4">Capacity</label>
-                    </div>
+                      
   
                     <!-- Email input -->
                     <div class="form-outline mb-4">
@@ -373,6 +397,10 @@ if(isset($_POST['submit']))
                     <div class="form-outline mb-4">
                       <input name="route" type="text" placeholder="phone" id="name4" class="form-control" />
                       <label class="form-label" for="name4">Route</label>
+                      <div class="form-outline mb-4">
+                        <input name="capacity" type="text" id="name4" placeholder="Capacity" class="form-control" />
+                        <label class="form-label" for="name4">Capacity</label>
+                    </div>
                   </div>
                     <?php } ?>
   
